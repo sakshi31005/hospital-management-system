@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -35,8 +36,8 @@ export default function MedicalHistory() {
         prescriptionsRes,
         labReportsRes,
       ] = await Promise.all([
-        fetch("/api/appointments"),
-        fetch("/api/prescriptions"),
+        fetch(apiUrl("/api/appointments")),
+        fetch(apiUrl("/api/prescriptions")),
         fetch(`/api/lab-reports/patient/${patientId}`),
       ]);
 
@@ -102,7 +103,7 @@ export default function MedicalHistory() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-[var(--text-primary)]">
-          Medical History 🩺
+          Medical History ðŸ©º
         </h1>
 
         <p className="text-[var(--text-secondary)] mt-1">
@@ -464,3 +465,6 @@ export default function MedicalHistory() {
     </div>
   );
 }
+
+
+

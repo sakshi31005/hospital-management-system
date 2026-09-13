@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import {
   Card,
   Badge,
@@ -11,6 +11,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
+import { apiUrl } from "../../Api/Api";
 
 export default function LabManagement() {
   const [reports, setReports] = useState([]);
@@ -28,7 +29,7 @@ export default function LabManagement() {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch("/api/lab-reports");
+      const response = await fetch(apiUrl("/api/lab-reports"));
 
       if (!response.ok) {
         throw new Error("Failed to fetch lab reports");
@@ -272,7 +273,7 @@ export default function LabManagement() {
 
               <p className="text-sm text-[var(--text-secondary)]">
                 {report.patientName}
-                {" · "}
+                {" Â· "}
                 {report.reportDate
                   ? new Date(
                       report.reportDate

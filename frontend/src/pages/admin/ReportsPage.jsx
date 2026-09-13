@@ -1,7 +1,7 @@
-import { Card } from '../../components/ui';
+﻿import { Card } from '../../components/ui';
 import { BarChart, Bar, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from 'react';
-
+import { apiUrl } from "../../Api/Api";
 const COLORS = [
   '#3b82f6',
   '#22c55e',
@@ -34,7 +34,7 @@ const CustomTooltip = ({ active, payload, label }) => {
           >
             {typeof item.value === 'number' &&
             item.value > 999
-              ? `₹${(item.value / 1000).toFixed(0)}K`
+              ? `â‚¹${(item.value / 1000).toFixed(0)}K`
               : item.value}
           </span>
         </p>
@@ -64,9 +64,9 @@ export default function ReportsPage() {
           appointmentsResponse,
           departmentsResponse
         ] = await Promise.all([
-          fetch('/api/patients'),
-          fetch('/api/appointments'),
-          fetch('/api/departments')
+          fetch(apiUrl("/api/patients")),
+          fetch(apiUrl("/api/appointments")),
+          fetch(apiUrl("/api/departments"))
         ]);
 
         if (!patientsResponse.ok) {
@@ -467,7 +467,7 @@ export default function ReportsPage() {
                   stroke="var(--text-tertiary)"
                   fontSize={12}
                   tickFormatter={(value) =>
-                    `₹${(
+                    `â‚¹${(
                       value / 1000
                     ).toFixed(0)}K`
                   }

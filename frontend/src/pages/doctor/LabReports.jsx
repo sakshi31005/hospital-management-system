@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { FlaskConical, Plus, Search } from "lucide-react";
@@ -40,9 +41,9 @@ const LabReports = () => {
                 patientsResponse,
                 appointmentsResponse,
             ] = await Promise.all([
-                fetch("/api/lab-reports"),
-                fetch("/api/patients"),
-                fetch("/api/appointments"),
+                fetch(apiUrl("/api/lab-reports")),
+                fetch(apiUrl("/api/patients")),
+                fetch(apiUrl("/api/appointments")),
             ]);
 
             if (
@@ -95,7 +96,7 @@ const LabReports = () => {
                 (patient) => patient._id === formData.patientId
             );
 
-            const response = await fetch("/api/lab-reports", {
+            const response = await fetch(apiUrl("/api/lab-reports"), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -274,7 +275,7 @@ const LabReports = () => {
                                     <span className="font-medium">
                                         Test Type:
                                     </span>{" "}
-                                    {report.testType || "—"}
+                                    {report.testType || "â€”"}
                                 </p>
 
                                 <p>
@@ -288,7 +289,7 @@ const LabReports = () => {
                                     <span className="font-medium">
                                         Normal Range:
                                     </span>{" "}
-                                    {report.normalRange || "—"}
+                                    {report.normalRange || "â€”"}
                                 </p>
 
                                 {report.notes && (
@@ -325,7 +326,7 @@ const LabReports = () => {
                                 onClick={() => setShowForm(false)}
                                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white text-xl"
                             >
-                                ×
+                                Ã—
                             </button>
                         </div>
 
@@ -398,7 +399,7 @@ const LabReports = () => {
                             <Input
                                 label="Normal Range"
                                 name="normalRange"
-                                placeholder="e.g. 4.5 - 5.5 million/µL"
+                                placeholder="e.g. 4.5 - 5.5 million/ÂµL"
                                 value={formData.normalRange}
                                 onChange={handleChange}
                             />
@@ -475,3 +476,6 @@ const LabReports = () => {
 };
 
 export default LabReports;
+
+
+

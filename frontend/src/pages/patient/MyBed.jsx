@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -32,7 +33,7 @@ export default function PatientBed() {
         setLoading(true);
         setError("");
 
-        const response = await fetch("/api/beds");
+        const response = await fetch(apiUrl("/api/beds"));
 
         if (!response.ok) {
           throw new Error("Failed to fetch bed information");
@@ -181,7 +182,7 @@ export default function PatientBed() {
                     </p>
 
                     <p className="font-medium text-[var(--text-primary)]">
-                      ₹{bed.dailyRate}
+                      â‚¹{bed.dailyRate}
                       <span className="text-xs font-normal text-[var(--text-secondary)]">
                         {" "}
                         / day
@@ -212,15 +213,15 @@ export default function PatientBed() {
               <div className="mt-6 p-4 rounded-xl bg-[var(--bg-tertiary)]">
                 {bed.status === "occupied" ? (
                   <p className="text-sm text-[var(--text-secondary)]">
-                    🛏️ This bed is currently assigned to you.
+                    ðŸ›ï¸ This bed is currently assigned to you.
                   </p>
                 ) : bed.status === "maintenance" ? (
                   <p className="text-sm text-[var(--text-secondary)]">
-                    ⚠️ This bed is currently under maintenance.
+                    âš ï¸ This bed is currently under maintenance.
                   </p>
                 ) : (
                   <p className="text-sm text-[var(--text-secondary)]">
-                    ℹ️ This bed is currently available.
+                    â„¹ï¸ This bed is currently available.
                   </p>
                 )}
               </div>
@@ -231,3 +232,5 @@ export default function PatientBed() {
     </div>
   );
 }
+
+

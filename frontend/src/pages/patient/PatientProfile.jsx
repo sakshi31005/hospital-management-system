@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -52,7 +53,7 @@ export default function PatientProfile() {
       setLoading(true);
       setError("");
 
-      const response = await fetch("/api/patients");
+      const response = await fetch(apiUrl("/api/patients"));
 
       if (!response.ok) {
         throw new Error("Failed to fetch patient profile");
@@ -429,3 +430,5 @@ function InfoItem({ icon: Icon, label, value }) {
     </div>
   );
 }
+
+

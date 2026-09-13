@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import {
   Search,
@@ -41,8 +42,8 @@ const MyPatients = () => {
       setError("");
 
       const [patientsRes, appointmentsRes] = await Promise.all([
-        fetch("/api/patients"),
-        fetch("/api/appointments"),
+        fetch(apiUrl("/api/patients")),
+        fetch(apiUrl("/api/appointments")),
       ]);
 
       if (!patientsRes.ok || !appointmentsRes.ok) {
@@ -103,7 +104,7 @@ const MyPatients = () => {
       setHistoryLoading(true);
 
       const [prescriptionsRes, labReportsRes, medicalRecordsRes] = await Promise.all([
-        fetch("/api/prescriptions"),
+        fetch(apiUrl("/api/prescriptions")),
         fetch(`/api/lab-reports/patient/${patient._id}`),
         fetch(`/api/medical-records/patient/${patient._id}`),
       ]);
@@ -324,8 +325,8 @@ const MyPatients = () => {
                 </h2>
 
                 <p className="text-sm text-gray-500 mt-1">
-                  {selectedPatient.name} •{" "}
-                  {selectedPatient.age} years •{" "}
+                  {selectedPatient.name} â€¢{" "}
+                  {selectedPatient.age} years â€¢{" "}
                   {selectedPatient.gender}
                 </p>
               </div>
@@ -733,3 +734,5 @@ const MyPatients = () => {
 };
 
 export default MyPatients;
+
+

@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import {
@@ -64,14 +65,14 @@ export default function PatientDashboard() {
         billsRes,
         bedsRes
       ] = await Promise.all([
-        fetch('/api/appointments'),
-        fetch('/api/patients'),
-        fetch('/api/doctors'),
-        fetch('/api/departments'),
-        fetch('/api/prescriptions'),
-        fetch('/api/lab-reports'),
-        fetch('/api/bills'),
-        fetch('/api/beds')
+        fetch(apiUrl('/api/appointments')),
+        fetch(apiUrl('/api/patients')),
+        fetch(apiUrl('/api/doctors')),
+        fetch(apiUrl('/api/departments')),
+        fetch(apiUrl('/api/prescriptions')),
+        fetch(apiUrl('/api/lab-reports')),
+        fetch(apiUrl('/api/bills')),
+        fetch(apiUrl('/api/beds'))
       ]);
 
       if (
@@ -462,7 +463,7 @@ export default function PatientDashboard() {
           <div>
             <h1 className="text-2xl font-bold text-[var(--text-primary)]">
               Hello,{' '}
-              {patient.name.split(' ')[0]}! 👋
+              {patient.name.split(' ')[0]}! ðŸ‘‹
             </h1>
 
             <p className="text-[var(--text-secondary)] mt-1">
@@ -708,7 +709,7 @@ export default function PatientDashboard() {
                     </h4>
 
                     <p className="text-sm text-[var(--text-secondary)]">
-                      {apt.department} ·{' '}
+                      {apt.department} Â·{' '}
                       {apt.reason}
                     </p>
                   </div>
@@ -797,7 +798,7 @@ export default function PatientDashboard() {
                         {
                           presc.doctorName
                         }{' '}
-                        ·{' '}
+                        Â·{' '}
                         {
                           medicines.length
                         }{' '}
@@ -826,7 +827,7 @@ export default function PatientDashboard() {
                             )
                           }
                         >
-                          📄 PDF
+                          ðŸ“„ PDF
                         </Button>
                       </div>
                     </div>
@@ -978,8 +979,8 @@ export default function PatientDashboard() {
                     value:
                       doctor._id,
                     label: `${doctor.name
-                      } — ${doctor.specialization
-                      } (⭐${doctor.rating ||
+                      } â€” ${doctor.specialization
+                      } (â­${doctor.rating ||
                       0
                       })`
                   })
@@ -1049,11 +1050,11 @@ export default function PatientDashboard() {
                               }`}
                           >
                             {booked
-                              ? '❌'
+                              ? 'âŒ'
                               : selectedTime ===
                                 slot
-                                ? '🔵'
-                                : '✅'}{' '}
+                                ? 'ðŸ”µ'
+                                : 'âœ…'}{' '}
                             {slot}
                           </button>
                         );
@@ -1245,7 +1246,7 @@ export default function PatientDashboard() {
                 )
               }
             >
-              📄 Download PDF
+              ðŸ“„ Download PDF
             </Button>
 
           </div>
@@ -1254,3 +1255,5 @@ export default function PatientDashboard() {
     </div>
   );
 }
+
+

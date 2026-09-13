@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import {
   Card,
   Button,
@@ -8,7 +8,7 @@ import {
   Tabs,
   Toast
 } from '../../components/ui';
-
+import { apiUrl } from "../../Api/Api";
 import { Download } from 'lucide-react';
 import jsPDF from 'jspdf';
 
@@ -32,7 +32,7 @@ export default function BillingManagement() {
       setLoading(true);
       setError('');
 
-      const response = await fetch('/api/bills');
+      const response = await fetch(apiUrl("/api/bills"));
 
       if (!response.ok) {
         throw new Error('Failed to fetch bills');
@@ -135,7 +135,7 @@ export default function BillingManagement() {
     let y = 82;
 
     doc.text('Description', 20, y);
-    doc.text('Amount (₹)', 150, y);
+    doc.text('Amount (â‚¹)', 150, y);
 
     y += 8;
 
@@ -143,7 +143,7 @@ export default function BillingManagement() {
       doc.text(item.description || '', 20, y);
 
       doc.text(
-        `₹${Number(item.amount || 0).toLocaleString('en-IN')}`,
+        `â‚¹${Number(item.amount || 0).toLocaleString('en-IN')}`,
         150,
         y
       );
@@ -157,7 +157,7 @@ export default function BillingManagement() {
 
     if (Number(bill.discount || 0) > 0) {
       doc.text(
-        `Discount: -₹${Number(bill.discount).toLocaleString('en-IN')}`,
+        `Discount: -â‚¹${Number(bill.discount).toLocaleString('en-IN')}`,
         120,
         y
       );
@@ -168,7 +168,7 @@ export default function BillingManagement() {
     doc.setFontSize(12);
 
     doc.text(
-      `Total: ₹${Number(bill.total || 0).toLocaleString('en-IN')}`,
+      `Total: â‚¹${Number(bill.total || 0).toLocaleString('en-IN')}`,
       120,
       y + 3
     );
@@ -210,7 +210,7 @@ export default function BillingManagement() {
       label: 'Bill ID',
       render: (val) => (
         <span className="font-mono text-xs">
-          {val ? val.slice(-8) : '—'}
+          {val ? val.slice(-8) : 'â€”'}
         </span>
       )
     },
@@ -232,7 +232,7 @@ export default function BillingManagement() {
               month: 'short',
               year: 'numeric'
             })
-          : '—'
+          : 'â€”'
     },
 
     {
@@ -241,7 +241,7 @@ export default function BillingManagement() {
       sortable: true,
       render: (val) => (
         <span className="font-semibold">
-          ₹{Number(val || 0).toLocaleString('en-IN')}
+          â‚¹{Number(val || 0).toLocaleString('en-IN')}
         </span>
       )
     },
@@ -267,7 +267,7 @@ export default function BillingManagement() {
       render: (val) =>
         val || (
           <span className="text-[var(--text-tertiary)]">
-            —
+            â€”
           </span>
         )
     },
@@ -315,7 +315,7 @@ export default function BillingManagement() {
             </p>
 
             <p className="text-2xl font-bold mt-1">
-              ₹{totalRevenue.toLocaleString('en-IN')}
+              â‚¹{totalRevenue.toLocaleString('en-IN')}
             </p>
           </div>
         </Card>
@@ -327,7 +327,7 @@ export default function BillingManagement() {
             </p>
 
             <p className="text-2xl font-bold mt-1">
-              ₹{totalPending.toLocaleString('en-IN')}
+              â‚¹{totalPending.toLocaleString('en-IN')}
             </p>
           </div>
         </Card>
@@ -339,7 +339,7 @@ export default function BillingManagement() {
             </p>
 
             <p className="text-2xl font-bold mt-1">
-              ₹{totalOverdue.toLocaleString('en-IN')}
+              â‚¹{totalOverdue.toLocaleString('en-IN')}
             </p>
           </div>
         </Card>

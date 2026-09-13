@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import {
   Card,
   Button,
@@ -9,6 +9,7 @@ import {
   Tabs,
 } from "../../components/ui";
 import { BedDouble } from "lucide-react";
+import { apiUrl } from "../../Api/Api";
 
 export default function BedManagement() {
   const [beds, setBeds] = useState([]);
@@ -32,7 +33,7 @@ export default function BedManagement() {
 
   const fetchBeds = async () => {
     try {
-      const response = await fetch("/api/beds");
+      const response = await fetch(apiUrl("/api/beds"));
 
       if (!response.ok) {
         throw new Error("Failed to fetch beds");
@@ -54,7 +55,7 @@ export default function BedManagement() {
 
   const fetchPatients = async () => {
     try {
-      const response = await fetch("/api/patients");
+      const response = await fetch(apiUrl("/api/patients"));
 
       if (!response.ok) {
         throw new Error("Failed to fetch patients");
@@ -109,21 +110,21 @@ export default function BedManagement() {
         "bg-accent-500/10 border-accent-500/30 hover:border-accent-500",
       text: "text-accent-600",
       badge: "success",
-      icon: "🛏️",
+      icon: "ðŸ›ï¸",
     },
 
     occupied: {
       color: "bg-danger-500/10 border-danger-500/30",
       text: "text-danger-600",
       badge: "danger",
-      icon: "🧑",
+      icon: "ðŸ§‘",
     },
 
     maintenance: {
       color: "bg-warning-500/10 border-warning-500/30",
       text: "text-warning-600",
       badge: "warning",
-      icon: "🔧",
+      icon: "ðŸ”§",
     },
   };
 
@@ -229,7 +230,7 @@ export default function BedManagement() {
   const handleRelease = async (bed) => {
     try {
       const response = await fetch(
-        `/api/beds/${bed._id}`,
+        apiUrl(`/api/beds/${bed._id}`),
         {
           method: "PUT",
           headers: {
@@ -472,7 +473,7 @@ export default function BedManagement() {
       >
         <div className="space-y-4">
           <p className="text-sm text-[var(--text-secondary)]">
-            Ward: {selectedBed?.ward} · Rate: ₹
+            Ward: {selectedBed?.ward} Â· Rate: â‚¹
             {selectedBed?.dailyRate}/day
           </p>
 

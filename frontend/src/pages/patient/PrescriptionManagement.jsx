@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -32,7 +33,7 @@ export default function PrescriptionManagement() {
         return;
       }
 
-      const response = await fetch("/api/prescriptions");
+      const response = await fetch(apiUrl("/api/prescriptions"));
 
       if (!response.ok) {
         throw new Error("Failed to fetch prescriptions");
@@ -211,7 +212,7 @@ export default function PrescriptionManagement() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-[var(--text-primary)]">
-          My Prescriptions 💊
+          My Prescriptions ðŸ’Š
         </h1>
 
         <p className="text-[var(--text-secondary)] mt-1">
@@ -374,7 +375,7 @@ export default function PrescriptionManagement() {
                   <div className="mb-4">
 
                     <h4 className="font-medium text-[var(--text-primary)] mb-3">
-                      Medicines 💊
+                      Medicines ðŸ’Š
                     </h4>
 
                     {prescription.medications?.length ? (
@@ -511,3 +512,5 @@ export default function PrescriptionManagement() {
     </div>
   );
 }
+
+

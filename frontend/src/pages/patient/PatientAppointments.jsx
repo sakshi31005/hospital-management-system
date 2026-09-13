@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import {
@@ -27,7 +28,7 @@ export default function PatientAppointments() {
     try {
       setLoading(true);
 
-      const response = await fetch('/api/appointments');
+      const response = await fetch(apiUrl('/api/appointments'));
 
       if (!response.ok) {
         throw new Error('Failed to fetch appointments');
@@ -347,3 +348,5 @@ export default function PatientAppointments() {
     </div>
   );
 }
+
+

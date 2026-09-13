@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { Calendar, Search, CheckCircle, XCircle } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
@@ -16,7 +17,7 @@ const DoctorAppointments = () => {
       setLoading(true);
       setError("");
 
-      const response = await fetch("/api/appointments");
+      const response = await fetch(apiUrl("/api/appointments"));
 
       if (!response.ok) {
         throw new Error("Failed to fetch appointments");
@@ -322,3 +323,5 @@ const DoctorAppointments = () => {
 };
 
 export default DoctorAppointments;
+
+

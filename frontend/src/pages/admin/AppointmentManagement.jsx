@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import {
   Card,
   Button,
@@ -10,6 +10,7 @@ import {
   Modal,
   Input
 } from '../../components/ui';
+import { apiUrl } from "../../Api/Api";
 import { Calendar, Clock, CheckCircle, XCircle, AlertCircle, Plus } from 'lucide-react';
 const todayStr = new Date().toISOString().split('T')[0];
 
@@ -40,7 +41,7 @@ export default function AppointmentManagement() {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch('/api/appointments');
+      const response = await fetch(apiUrl("/api/appointments"));
 
       if (!response.ok) {
         throw new Error('Failed to fetch appointments');
@@ -60,7 +61,7 @@ export default function AppointmentManagement() {
   };
   const fetchPatients = async () => {
     try {
-      const response = await fetch('/api/patients');
+      const response = await fetch(apiUrl("/api/patients"));
 
       if (!response.ok) {
         throw new Error('Failed to fetch patients');
@@ -75,7 +76,7 @@ export default function AppointmentManagement() {
 
   const fetchDoctors = async () => {
     try {
-      const response = await fetch('/api/doctors');
+      const response = await fetch(apiUrl("/api/doctors"));
 
       if (!response.ok) {
         throw new Error('Failed to fetch doctors');
@@ -107,7 +108,7 @@ export default function AppointmentManagement() {
 
   const handleStatusUpdate = async (id, newStatus) => {
     try {
-      const response = await fetch(`/api/appointments/${id}`, {
+      const response = await fetch(apiUrl(`/api/appointments/${id}`), {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -160,7 +161,7 @@ export default function AppointmentManagement() {
               size="sm"
               onClick={() => handleStatusUpdate(row._id, "completed")}
             >
-              ✓
+              âœ“
             </Button>
 
             <Button
@@ -169,7 +170,7 @@ export default function AppointmentManagement() {
               className="text-danger-500"
               onClick={() => handleStatusUpdate(row._id, "cancelled")}
             >
-              ✕
+              âœ•
             </Button>
           </div>
         ) : null,
@@ -223,7 +224,7 @@ export default function AppointmentManagement() {
       };
 
       const response = await fetch(
-        '/api/appointments', {
+        apiUrl("/api/appointments"), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -408,3 +409,4 @@ export default function AppointmentManagement() {
     </div>
   );
 }
+

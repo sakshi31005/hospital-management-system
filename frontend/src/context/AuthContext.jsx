@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useEffect } from "react";
+﻿import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext(null);
+import { apiUrl } from "../Api/Api";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -24,7 +25,7 @@ export function AuthProvider({ children }) {
   // LOGIN using backend
   const login = async (email, password) => {
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(apiUrl("/api/auth/login"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +73,7 @@ export function AuthProvider({ children }) {
     patientDetails = {}
   ) => {
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch(apiUrl("/api/auth/register"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -158,3 +159,4 @@ export function useAuth() {
 }
 
 export default AuthContext;
+

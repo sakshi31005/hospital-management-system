@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 
 function PrescriptionManagement() {
@@ -30,7 +31,7 @@ function PrescriptionManagement() {
 
     const fetchDoctors = async () => {
         try {
-            const response = await fetch("/api/doctors");
+            const response = await fetch(apiUrl("/api/doctors"));
 
             if (!response.ok) {
                 throw new Error("Failed to fetch doctors");
@@ -45,7 +46,7 @@ function PrescriptionManagement() {
 
     const fetchPatients = async () => {
         try {
-            const response = await fetch("/api/patients");
+            const response = await fetch(apiUrl("/api/patients"));
 
             if (!response.ok) {
                 throw new Error("Failed to fetch patients");
@@ -60,7 +61,7 @@ function PrescriptionManagement() {
 
     const fetchAppointments = async () => {
         try {
-            const response = await fetch("/api/appointments");
+            const response = await fetch(apiUrl("/api/appointments"));
 
             if (!response.ok) {
                 throw new Error("Failed to fetch appointments");
@@ -167,7 +168,7 @@ function PrescriptionManagement() {
         console.log("Prescription data:", prescriptionData);
 
         try {
-            const response = await fetch("/api/prescriptions", {
+            const response = await fetch(apiUrl("/api/prescriptions"), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -185,7 +186,7 @@ function PrescriptionManagement() {
 
             console.log("Prescription created:", data);
 
-            alert("Prescription created successfully! 💊");
+            alert("Prescription created successfully! ðŸ’Š");
 
             // Reset form
             setFormData({
@@ -212,7 +213,7 @@ function PrescriptionManagement() {
             {/* Page Header */}
             <div>
                 <h1 className="text-3xl font-bold text-[var(--text-primary)]">
-                    Prescription Management 💊
+                    Prescription Management ðŸ’Š
                 </h1>
 
                 <p className="mt-2 text-[var(--text-secondary)]">
@@ -361,7 +362,7 @@ function PrescriptionManagement() {
                 <div className="border-t pt-5">
 
                     <h2 className="text-xl font-semibold mb-4">
-                        Medication 💊
+                        Medication ðŸ’Š
                     </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -458,7 +459,7 @@ function PrescriptionManagement() {
                     type="submit"
                     className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                 >
-                    Create Prescription 💊
+                    Create Prescription ðŸ’Š
                 </button>
 
             </form>
@@ -467,3 +468,5 @@ function PrescriptionManagement() {
 }
 
 export default PrescriptionManagement;
+
+

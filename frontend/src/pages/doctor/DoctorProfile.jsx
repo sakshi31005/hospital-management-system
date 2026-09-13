@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { UserCircle, Mail, Phone, Stethoscope, Briefcase, Star } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
@@ -22,7 +23,7 @@ const DoctorProfile = () => {
         try {
             setLoading(true);
 
-            const response = await fetch("/api/doctors");
+            const response = await fetch(apiUrl("/api/doctors"));
 
             if (!response.ok) {
                 throw new Error("Failed to fetch doctors");
@@ -345,3 +346,5 @@ const DoctorProfile = () => {
 };
 
 export default DoctorProfile;
+
+

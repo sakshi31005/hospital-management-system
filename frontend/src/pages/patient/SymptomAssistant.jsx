@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useState, useRef, useEffect } from 'react';
 import { Card, Button, Badge } from '../../components/ui';
 import { Bot, Send, AlertTriangle, Heart } from 'lucide-react';
@@ -135,12 +136,12 @@ export default function SymptomAssistant() {
     {
       id: 1,
       type: 'bot',
-      text: "Hello! 👋 I'm your Health Information Assistant. Tell me about your symptoms and I'll provide general health information and suggest which department might be helpful.",
+      text: "Hello! ðŸ‘‹ I'm your Health Information Assistant. Tell me about your symptoms and I'll provide general health information and suggest which department might be helpful.",
     },
     {
       id: 2,
       type: 'disclaimer',
-      text: "⚠️ IMPORTANT DISCLAIMER: This assistant provides general health information only. It does NOT provide medical diagnoses, treatment recommendations, or replace professional medical advice. Always consult a qualified healthcare professional for medical concerns.",
+      text: "âš ï¸ IMPORTANT DISCLAIMER: This assistant provides general health information only. It does NOT provide medical diagnoses, treatment recommendations, or replace professional medical advice. Always consult a qualified healthcare professional for medical concerns.",
     },
   ]);
 
@@ -151,8 +152,8 @@ export default function SymptomAssistant() {
     const fetchData = async () => {
       try {
         const [doctorsResponse, departmentsResponse] = await Promise.all([
-          fetch('/api/doctors'),
-          fetch('/api/departments'),
+          fetch(apiUrl('/api/doctors')),
+          fetch(apiUrl('/api/departments')),
         ]);
 
         if (!doctorsResponse.ok) {
@@ -379,7 +380,7 @@ export default function SymptomAssistant() {
                             size="xs"
                           >
                             {d.severity === 'high'
-                              ? '⚠️ Seek care'
+                              ? 'âš ï¸ Seek care'
                               : `${d.severity} severity`}
                           </Badge>
                         </div>
@@ -392,7 +393,7 @@ export default function SymptomAssistant() {
                       {/* Suggestions */}
                       <div className="px-4 py-3 rounded-2xl bg-accent-50 dark:bg-accent-500/10">
                         <p className="text-xs font-semibold text-accent-700 dark:text-accent-400 mb-2">
-                          💡 General Suggestions
+                          ðŸ’¡ General Suggestions
                         </p>
 
                         <ul className="space-y-1">
@@ -403,7 +404,7 @@ export default function SymptomAssistant() {
                                 className="text-sm text-[var(--text-secondary)] flex items-start gap-2"
                               >
                                 <span className="text-accent-500 mt-0.5">
-                                  •
+                                  â€¢
                                 </span>
 
                                 {suggestion}
@@ -416,7 +417,7 @@ export default function SymptomAssistant() {
                       {/* Department Recommendation */}
                       <div className="px-4 py-3 rounded-2xl bg-primary-50 dark:bg-primary-900/20">
                         <p className="text-xs font-semibold text-primary-700 dark:text-primary-400 mb-2">
-                          🏥 Recommended Department:{' '}
+                          ðŸ¥ Recommended Department:{' '}
                           {d.department}
                         </p>
 
@@ -442,7 +443,7 @@ export default function SymptomAssistant() {
                                 {doctor.rating !==
                                   undefined && (
                                   <span className="text-xs text-[var(--text-tertiary)]">
-                                    · ⭐{doctor.rating}
+                                    Â· â­{doctor.rating}
                                   </span>
                                 )}
                               </div>
@@ -536,3 +537,5 @@ export default function SymptomAssistant() {
     </div>
   );
 }
+
+

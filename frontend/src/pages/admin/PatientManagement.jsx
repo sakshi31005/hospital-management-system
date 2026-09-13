@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 
 import {
   Card,
@@ -12,7 +12,7 @@ import {
   Input,
   Select
 } from '../../components/ui';
-
+import { apiUrl } from "../../Api/Api";
 import { Eye, MapPin, Plus } from 'lucide-react';
 
 
@@ -74,9 +74,7 @@ export default function PatientManagement() {
       setLoading(true);
       setError('');
 
-      const response = await fetch(
-        '/api/patients'
-      );
+      const response = await fetch(apiUrl("/api/patients"));
 
       if (!response.ok) {
         throw new Error('Failed to fetch patients');
@@ -104,8 +102,7 @@ export default function PatientManagement() {
     try {
       setError('');
 
-      const response = await fetch(
-        '/api/patients',
+      const response = await fetch(apiUrl("/api/patients"),
         {
           method: 'POST',
 
@@ -198,8 +195,8 @@ export default function PatientManagement() {
     try {
       const [appointmentsResponse, prescriptionsResponse] =
         await Promise.all([
-          fetch('/api/appointments'),
-          fetch('/api/prescriptions')
+          fetch(apiUrl('/api/appointments')),
+          fetch(apiUrl('/api/prescriptions'))
         ]);
 
       if (!appointmentsResponse.ok) {
@@ -728,16 +725,16 @@ export default function PatientManagement() {
                                   {medicine.name}
                                 </span>
 
-                                {" — "}
+                                {" â€” "}
 
                                 {medicine.dosage}
 
                                 {medicine.frequency && (
-                                  <> · {medicine.frequency}</>
+                                  <> Â· {medicine.frequency}</>
                                 )}
 
                                 {medicine.duration && (
-                                  <> · {medicine.duration}</>
+                                  <> Â· {medicine.duration}</>
                                 )}
                               </div>
                             ))}
@@ -814,7 +811,7 @@ export default function PatientManagement() {
                               year: "numeric",
                             }
                           )}
-                          {" · "}
+                          {" Â· "}
                           {apt.time}
                         </p>
 

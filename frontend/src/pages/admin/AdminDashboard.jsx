@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, StatCard, Badge, DataTable, Tabs } from '../../components/ui';
 import {
@@ -26,7 +26,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-
+import { apiUrl } from "../../Api/Api";
 const todayStr = new Date().toISOString().split('T')[0];
 
 export default function AdminDashboard() {
@@ -48,7 +48,7 @@ export default function AdminDashboard() {
   // =========================
   const fetchAppointments = async () => {
     try {
-      const response = await fetch('/api/appointments');
+      const response = await fetch(apiUrl("/api/appointments"));
 
       if (!response.ok) {
         throw new Error('Failed to fetch appointments');
@@ -66,7 +66,7 @@ export default function AdminDashboard() {
   // =========================
   const fetchDoctors = async () => {
     try {
-      const response = await fetch('/api/doctors');
+      const response = await fetch(apiUrl("/api/doctors"));
 
       if (!response.ok) {
         throw new Error('Failed to fetch doctors');
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
   // =========================
   const fetchPatients = async () => {
     try {
-      const response = await fetch('/api/patients');
+      const response = await fetch(apiUrl("/api/patients"));
 
       if (!response.ok) {
         throw new Error('Failed to fetch patients');
@@ -233,8 +233,8 @@ export default function AdminDashboard() {
               style={{ color: item.color }}
             >
               {typeof item.value === 'number' &&
-              item.value > 999
-                ? `₹${(item.value / 1000).toFixed(0)}K`
+                item.value > 999
+                ? `â‚¹${(item.value / 1000).toFixed(0)}K`
                 : item.value}
             </span>
           </p>
@@ -492,7 +492,7 @@ export default function AdminDashboard() {
                     stroke="var(--text-tertiary)"
                     fontSize={12}
                     tickFormatter={(value) =>
-                      `₹${(value / 1000).toFixed(0)}K`
+                      `â‚¹${(value / 1000).toFixed(0)}K`
                     }
                   />
 
@@ -558,7 +558,7 @@ export default function AdminDashboard() {
                         key={entry.name}
                         fill={
                           CHART_COLORS[
-                            index % CHART_COLORS.length
+                          index % CHART_COLORS.length
                           ]
                         }
                       />
@@ -592,7 +592,7 @@ export default function AdminDashboard() {
                     style={{
                       backgroundColor:
                         CHART_COLORS[
-                          index % CHART_COLORS.length
+                        index % CHART_COLORS.length
                         ],
                     }}
                   />

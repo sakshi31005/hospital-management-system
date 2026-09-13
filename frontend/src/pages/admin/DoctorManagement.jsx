@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import {
   Card,
   Button,
@@ -20,11 +20,11 @@ import {
   Star,
   Phone
 } from 'lucide-react';
+import { apiUrl } from "../../Api/Api";
 
 
-
-const API_URL = '/api/doctors';
-const DEPARTMENT_API_URL = '/api/departments';
+const API_URL = apiUrl('/api/doctors');
+const DEPARTMENT_API_URL = apiUrl('/api/departments');
 
 export default function DoctorManagement() {
   const [doctors, setDoctors] = useState([]);
@@ -513,7 +513,7 @@ export default function DoctorManagement() {
 
                 <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
                   <Star size={14} />
-                  {doc.rating || 0} rating · {doc.experience} yrs exp
+                  {doc.rating || 0} rating Â· {doc.experience} yrs exp
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">

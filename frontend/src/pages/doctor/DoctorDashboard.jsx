@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import {
@@ -67,11 +68,11 @@ export default function DoctorDashboard() {
         prescriptionsRes,
         labReportsRes
       ] = await Promise.all([
-        fetch('/api/doctors'),
-        fetch('/api/appointments'),
-        fetch('/api/patients'),
-        fetch('/api/prescriptions'),
-        fetch('/api/lab-reports')
+        fetch(apiUrl('/api/doctors')),
+        fetch(apiUrl('/api/appointments')),
+        fetch(apiUrl('/api/patients')),
+        fetch(apiUrl('/api/prescriptions')),
+        fetch(apiUrl('/api/lab-reports'))
       ]);
 
       if (
@@ -273,7 +274,7 @@ export default function DoctorDashboard() {
     };
 
     try {
-      const response = await fetch('/api/prescriptions', {
+      const response = await fetch(apiUrl('/api/prescriptions'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -314,7 +315,7 @@ export default function DoctorDashboard() {
       setShowPrescription(false);
 
       setToast({
-        message: 'Prescription created successfully 💊',
+        message: 'Prescription created successfully ðŸ’Š',
         type: 'success'
       });
     } catch (error) {
@@ -509,7 +510,7 @@ export default function DoctorDashboard() {
           </h1>
 
           <p className="text-[var(--text-secondary)] mt-1">
-            {doctor.specialization} · {doctor.department}
+            {doctor.specialization} Â· {doctor.department}
           </p>
         </div>
 
@@ -524,7 +525,7 @@ export default function DoctorDashboard() {
           </span>
 
           <span className="text-[var(--text-tertiary)]">
-            ·
+            Â·
           </span>
 
           <span className="text-sm text-[var(--text-secondary)]">
@@ -625,9 +626,9 @@ export default function DoctorDashboard() {
 
                     <p className="text-sm text-[var(--text-secondary)]">
                       {patient
-                        ? `Age: ${patient.age} · ${patient.gender} · Blood: ${patient.bloodGroup}`
+                        ? `Age: ${patient.age} Â· ${patient.gender} Â· Blood: ${patient.bloodGroup}`
                         : 'Patient details unavailable'}
-                      {' · '}
+                      {' Â· '}
                       {apt.reason}
                     </p>
 
@@ -831,7 +832,7 @@ export default function DoctorDashboard() {
                     </p>
 
                     <p className="text-sm text-[var(--text-secondary)]">
-                      {presc.diagnosis} ·{' '}
+                      {presc.diagnosis} Â·{' '}
                       {new Date(
                         presc.date
                       ).toLocaleDateString(
@@ -853,7 +854,7 @@ export default function DoctorDashboard() {
                       )
                     }
                   >
-                    📄 PDF
+                    ðŸ“„ PDF
                   </Button>
                 </div>
               ))}
@@ -1042,7 +1043,7 @@ export default function DoctorDashboard() {
         onClose={() =>
           setShowHistory(false)
         }
-        title={`Patient History — ${selectedPatient?.name || ''
+        title={`Patient History â€” ${selectedPatient?.name || ''
           }`}
         size="xl"
       >
@@ -1149,3 +1150,6 @@ export default function DoctorDashboard() {
     </div>
   );
 }
+
+
+

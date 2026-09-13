@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { Card, Button, Badge, Modal, Input, Toast } from '../../components/ui';
 import { Plus, Edit, Users, Stethoscope } from 'lucide-react';
+import { apiUrl } from "../../Api/Api";
 
 export default function DepartmentManagement() {
   const [showModal, setShowModal] = useState(false);
@@ -17,7 +18,7 @@ export default function DepartmentManagement() {
   }, []);
   const fetchDepartments = async () => {
     try {
-      const response = await fetch('/api/departments');
+      const response = await fetch(apiUrl("/api/departments"));
       if (!response.ok) {
         throw new Error('Failed to fetch departments');
       }
@@ -52,8 +53,8 @@ export default function DepartmentManagement() {
       };
 
       const url = editDept
-        ? `/api/departments/${editDept._id}`
-        : '/api/departments';
+        ? apiUrl(`/api/departments/${editDept._id}`)
+        : apiUrl("/api/departments");
 
       const method = editDept ? 'PUT' : 'POST';
 
@@ -149,10 +150,11 @@ export default function DepartmentManagement() {
             label="Icon (emoji)"
             value={icon}
             onChange={(e) => setIcon(e.target.value)}
-            placeholder="❤️"
+            placeholder="â¤ï¸"
           />
         </div>
       </Modal>
     </div>
   );
 }
+

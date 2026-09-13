@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { Card, Button, Input, Toast } from "../../components/ui";
 import { CalendarPlus } from "lucide-react";
@@ -22,7 +23,7 @@ export default function BookAppointment() {
 
   const fetchPatients = async () => {
     try {
-      const response = await fetch("/api/patients");
+      const response = await fetch(apiUrl("/api/patients"));
       const data = await response.json();
       setPatients(data);
     } catch (error) {
@@ -32,7 +33,7 @@ export default function BookAppointment() {
 
   const fetchDoctors = async () => {
     try {
-      const response = await fetch("/api/doctors");
+      const response = await fetch(apiUrl("/api/doctors"));
       const data = await response.json();
       setDoctors(data);
     } catch (error) {
@@ -74,7 +75,7 @@ export default function BookAppointment() {
         status: "confirmed",
       };
 
-      const response = await fetch("/api/appointments", {
+      const response = await fetch(apiUrl("/api/appointments"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +90,7 @@ export default function BookAppointment() {
       }
 
       setToast({
-        message: "Appointment booked successfully 🎉",
+        message: "Appointment booked successfully ðŸŽ‰",
         type: "success",
       });
 
@@ -174,7 +175,7 @@ export default function BookAppointment() {
 
               {doctors.map((doctor) => (
                 <option key={doctor._id} value={doctor._id}>
-                  {doctor.name} — {doctor.specialization}
+                  {doctor.name} â€” {doctor.specialization}
                 </option>
               ))}
             </select>
@@ -247,3 +248,5 @@ export default function BookAppointment() {
     </div>
   );
 }
+
+

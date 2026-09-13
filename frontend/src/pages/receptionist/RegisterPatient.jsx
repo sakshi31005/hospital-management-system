@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useState } from "react";
 
 function RegisterPatient() {
@@ -30,7 +31,7 @@ function RegisterPatient() {
     setError("");
 
     try {
-      const response = await fetch("/api/patients", {
+      const response = await fetch(apiUrl("/api/patients"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +48,7 @@ function RegisterPatient() {
         throw new Error(data.message || "Failed to register patient");
       }
 
-      setMessage("Patient registered successfully! 🎉");
+      setMessage("Patient registered successfully! ðŸŽ‰");
 
       setForm({
         name: "",
@@ -233,3 +234,4 @@ function RegisterPatient() {
 }
 
 export default RegisterPatient;
+

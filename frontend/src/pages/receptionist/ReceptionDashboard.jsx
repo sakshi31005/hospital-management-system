@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useState, useEffect } from 'react';
 
 import {
@@ -75,10 +76,10 @@ export default function ReceptionDashboard() {
         departmentsResponse,
         appointmentsResponse
       ] = await Promise.all([
-        fetch('/api/patients'),
-        fetch('/api/doctors'),
-        fetch('/api/departments'),
-        fetch('/api/appointments')
+        fetch(apiUrl('/api/patients')),
+        fetch(apiUrl('/api/doctors')),
+        fetch(apiUrl('/api/departments')),
+        fetch(apiUrl('/api/appointments'))
       ]);
 
       if (!patientsResponse.ok) {
@@ -172,7 +173,7 @@ export default function ReceptionDashboard() {
         return;
       }
 
-      const response = await fetch('/api/patients', {
+      const response = await fetch(apiUrl('/api/patients'), {
         method: 'POST',
 
         headers: {
@@ -388,7 +389,7 @@ export default function ReceptionDashboard() {
         status: 'confirmed',
       };
 
-      const response = await fetch('/api/appointments', {
+      const response = await fetch(apiUrl('/api/appointments'), {
         method: 'POST',
 
         headers: {
@@ -789,7 +790,7 @@ export default function ReceptionDashboard() {
             label: 'Generate Bill',
             icon: () => (
               <span className="text-lg">
-                💰
+                ðŸ’°
               </span>
             ),
             color: 'bg-purple-500/10 text-purple-500',
@@ -1286,7 +1287,7 @@ export default function ReceptionDashboard() {
                       doctorItem._id ||
                       doctorItem.id,
                     label:
-                      `${doctorItem.name} — ${doctorItem.specialization}`
+                      `${doctorItem.name} â€” ${doctorItem.specialization}`
                   })),
 
               ]}
@@ -1359,10 +1360,10 @@ export default function ReceptionDashboard() {
                       >
 
                         {isBooked
-                          ? '❌'
+                          ? 'âŒ'
                           : isSelected
-                            ? '✓'
-                            : '✅'}{' '}
+                            ? 'âœ“'
+                            : 'âœ…'}{' '}
 
                         {slot}
 
@@ -1499,3 +1500,5 @@ export default function ReceptionDashboard() {
     </div>
   );
 }
+
+

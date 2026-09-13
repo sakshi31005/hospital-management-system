@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Card, Badge, Spinner } from "../../components/ui";
@@ -23,7 +24,7 @@ export default function PatientBills() {
         setLoading(true);
         setError("");
 
-        const response = await fetch("/api/bills");
+        const response = await fetch(apiUrl("/api/bills"));
 
         if (!response.ok) {
           throw new Error("Failed to fetch bills");
@@ -121,7 +122,7 @@ export default function PatientBills() {
               </p>
 
               <p className="text-2xl font-bold text-[var(--text-primary)]">
-                ₹{totalAmount.toLocaleString("en-IN")}
+                â‚¹{totalAmount.toLocaleString("en-IN")}
               </p>
             </div>
           </div>
@@ -140,7 +141,7 @@ export default function PatientBills() {
               </p>
 
               <p className="text-2xl font-bold text-[var(--text-primary)]">
-                ₹{pendingAmount.toLocaleString("en-IN")}
+                â‚¹{pendingAmount.toLocaleString("en-IN")}
               </p>
             </div>
           </div>
@@ -221,7 +222,7 @@ export default function PatientBills() {
                         </span>
 
                         <span className="font-medium text-[var(--text-primary)]">
-                          ₹
+                          â‚¹
                           {Number(
                             item.amount || 0
                           ).toLocaleString("en-IN")}
@@ -239,7 +240,7 @@ export default function PatientBills() {
                     </span>
 
                     <span className="text-[var(--text-primary)]">
-                      ₹
+                      â‚¹
                       {Number(
                         bill.discount || 0
                       ).toLocaleString("en-IN")}
@@ -252,7 +253,7 @@ export default function PatientBills() {
                     </span>
 
                     <span className="text-lg font-bold text-[var(--text-primary)]">
-                      ₹
+                      â‚¹
                       {Number(
                         bill.total || 0
                       ).toLocaleString("en-IN")}
@@ -277,3 +278,5 @@ export default function PatientBills() {
     </div>
   );
 }
+
+

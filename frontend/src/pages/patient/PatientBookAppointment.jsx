@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../Api/Api";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -46,8 +47,8 @@ export default function PatientBookAppointment() {
 
       const [doctorsResponse, departmentsResponse] =
         await Promise.all([
-          fetch("/api/doctors"),
-          fetch("/api/departments"),
+          fetch(apiUrl("/api/doctors")),
+          fetch(apiUrl("/api/departments")),
         ]);
 
       if (!doctorsResponse.ok || !departmentsResponse.ok) {
@@ -121,7 +122,7 @@ export default function PatientBookAppointment() {
     try {
       setBooking(true);
 
-      const response = await fetch("/api/appointments", {
+      const response = await fetch(apiUrl("/api/appointments"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -148,7 +149,7 @@ export default function PatientBookAppointment() {
       }
 
       setSuccess(
-        "Appointment booked successfully! 🎉"
+        "Appointment booked successfully! ðŸŽ‰"
       );
 
       setFormData({
@@ -235,7 +236,7 @@ export default function PatientBookAppointment() {
                     key={doctor._id || doctor.id}
                     value={doctor._id || doctor.id}
                   >
-                    {doctor.name} —{" "}
+                    {doctor.name} â€”{" "}
                     {doctor.specialization}
                   </option>
                 ))}
@@ -371,3 +372,5 @@ export default function PatientBookAppointment() {
     </div>
   );
 }
+
+
