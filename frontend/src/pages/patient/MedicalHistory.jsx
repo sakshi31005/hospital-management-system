@@ -103,7 +103,7 @@ export default function MedicalHistory() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-[var(--text-primary)]">
-          Medical History ðŸ©º
+          Medical History 🩺
         </h1>
 
         <p className="text-[var(--text-secondary)] mt-1">
@@ -283,7 +283,7 @@ export default function MedicalHistory() {
                 className="p-4 rounded-xl border border-[var(--border-color)]"
               >
 
-                <div className="flex justify-between gap-3 mb-3">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                   <div>
                     <h3 className="font-semibold text-[var(--text-primary)]">
                       {prescription.diagnosis}
