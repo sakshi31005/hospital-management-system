@@ -725,16 +725,16 @@ export default function PatientManagement() {
                                   {medicine.name}
                                 </span>
 
-                                {" â€” "}
+                                {" · "}
 
                                 {medicine.dosage}
 
                                 {medicine.frequency && (
-                                  <> Â· {medicine.frequency}</>
+                                  <> · {medicine.frequency}</>
                                 )}
 
                                 {medicine.duration && (
-                                  <> Â· {medicine.duration}</>
+                                  <> · {medicine.duration}</>
                                 )}
                               </div>
                             ))}
@@ -811,7 +811,7 @@ export default function PatientManagement() {
                               year: "numeric",
                             }
                           )}
-                          {" Â· "}
+                          {" · "}
                           {apt.time}
                         </p>
 

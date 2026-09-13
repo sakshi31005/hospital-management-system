@@ -135,7 +135,7 @@ export default function BillingManagement() {
     let y = 82;
 
     doc.text('Description', 20, y);
-    doc.text('Amount (â‚¹)', 150, y);
+    doc.text('Amount (₹)', 150, y);
 
     y += 8;
 
@@ -143,7 +143,7 @@ export default function BillingManagement() {
       doc.text(item.description || '', 20, y);
 
       doc.text(
-        `â‚¹${Number(item.amount || 0).toLocaleString('en-IN')}`,
+        `₹${Number(item.amount || 0).toLocaleString('en-IN')}`,
         150,
         y
       );
@@ -157,7 +157,7 @@ export default function BillingManagement() {
 
     if (Number(bill.discount || 0) > 0) {
       doc.text(
-        `Discount: -â‚¹${Number(bill.discount).toLocaleString('en-IN')}`,
+        `Discount: -₹${Number(bill.discount).toLocaleString('en-IN')}`,
         120,
         y
       );
@@ -168,7 +168,7 @@ export default function BillingManagement() {
     doc.setFontSize(12);
 
     doc.text(
-      `Total: â‚¹${Number(bill.total || 0).toLocaleString('en-IN')}`,
+      `Total: ₹${Number(bill.total || 0).toLocaleString('en-IN')}`,
       120,
       y + 3
     );
@@ -241,7 +241,7 @@ export default function BillingManagement() {
       sortable: true,
       render: (val) => (
         <span className="font-semibold">
-          â‚¹{Number(val || 0).toLocaleString('en-IN')}
+          ₹{Number(val || 0).toLocaleString('en-IN')}
         </span>
       )
     },
@@ -267,7 +267,7 @@ export default function BillingManagement() {
       render: (val) =>
         val || (
           <span className="text-[var(--text-tertiary)]">
-            â€”
+            -
           </span>
         )
     },
@@ -315,7 +315,7 @@ export default function BillingManagement() {
             </p>
 
             <p className="text-2xl font-bold mt-1">
-              â‚¹{totalRevenue.toLocaleString('en-IN')}
+              ₹{totalRevenue.toLocaleString('en-IN')}
             </p>
           </div>
         </Card>
@@ -327,7 +327,7 @@ export default function BillingManagement() {
             </p>
 
             <p className="text-2xl font-bold mt-1">
-              â‚¹{totalPending.toLocaleString('en-IN')}
+              ₹{totalPending.toLocaleString('en-IN')}
             </p>
           </div>
         </Card>
@@ -339,7 +339,7 @@ export default function BillingManagement() {
             </p>
 
             <p className="text-2xl font-bold mt-1">
-              â‚¹{totalOverdue.toLocaleString('en-IN')}
+              ₹{totalOverdue.toLocaleString('en-IN')}
             </p>
           </div>
         </Card>

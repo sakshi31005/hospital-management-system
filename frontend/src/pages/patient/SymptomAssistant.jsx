@@ -136,12 +136,12 @@ export default function SymptomAssistant() {
     {
       id: 1,
       type: 'bot',
-      text: "Hello! ðŸ‘‹ I'm your Health Information Assistant. Tell me about your symptoms and I'll provide general health information and suggest which department might be helpful.",
+      text: "Hello! 👋 I'm your Health Information Assistant. Tell me about your symptoms and I'll provide general health information and suggest which department might be helpful.",
     },
     {
       id: 2,
       type: 'disclaimer',
-      text: "âš ï¸ IMPORTANT DISCLAIMER: This assistant provides general health information only. It does NOT provide medical diagnoses, treatment recommendations, or replace professional medical advice. Always consult a qualified healthcare professional for medical concerns.",
+      text: "⚠️ IMPORTANT DISCLAIMER: This assistant provides general health information only. It does NOT provide medical diagnoses, treatment recommendations, or replace professional medical advice. Always consult a qualified healthcare professional for medical concerns.",
     },
   ]);
 
@@ -443,7 +443,7 @@ export default function SymptomAssistant() {
                                 {doctor.rating !==
                                   undefined && (
                                   <span className="text-xs text-[var(--text-tertiary)]">
-                                    Â· â­{doctor.rating}
+                                    · ★ {doctor.rating}
                                   </span>
                                 )}
                               </div>

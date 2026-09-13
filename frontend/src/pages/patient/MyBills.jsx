@@ -122,7 +122,7 @@ export default function PatientBills() {
               </p>
 
               <p className="text-2xl font-bold text-[var(--text-primary)]">
-                â‚¹{totalAmount.toLocaleString("en-IN")}
+                ₹{totalAmount.toLocaleString("en-IN")}
               </p>
             </div>
           </div>
@@ -141,7 +141,7 @@ export default function PatientBills() {
               </p>
 
               <p className="text-2xl font-bold text-[var(--text-primary)]">
-                â‚¹{pendingAmount.toLocaleString("en-IN")}
+                ₹{pendingAmount.toLocaleString("en-IN")}
               </p>
             </div>
           </div>
@@ -193,8 +193,8 @@ export default function PatientBills() {
 
                       {bill.date
                         ? new Date(
-                            bill.date
-                          ).toLocaleDateString("en-IN")
+                          bill.date
+                        ).toLocaleDateString("en-IN")
                         : "Date unavailable"}
                     </div>
                   </div>
@@ -215,17 +215,14 @@ export default function PatientBills() {
                     {bill.items.map((item, index) => (
                       <div
                         key={index}
-                        className="flex justify-between text-sm"
+                        className="flex items-start justify-between gap-3 text-sm"
                       >
-                        <span className="text-[var(--text-secondary)]">
+                        <span className="min-w-0 break-words text-[var(--text-secondary)]">
                           {item.description}
                         </span>
 
-                        <span className="font-medium text-[var(--text-primary)]">
-                          â‚¹
-                          {Number(
-                            item.amount || 0
-                          ).toLocaleString("en-IN")}
+                        <span className="shrink-0 font-medium text-[var(--text-primary)]">
+                          ₹{Number(item.amount || 0).toLocaleString("en-IN")}
                         </span>
                       </div>
                     ))}
@@ -234,26 +231,26 @@ export default function PatientBills() {
 
                 {/* Total */}
                 <div className="mt-4 pt-4 border-t border-[var(--border-color)]">
-                  <div className="flex justify-between">
+                  <div className="flex items-start justify-between gap-3">
                     <span className="text-[var(--text-secondary)]">
                       Discount
                     </span>
 
                     <span className="text-[var(--text-primary)]">
-                      â‚¹
+                      ₹
                       {Number(
                         bill.discount || 0
                       ).toLocaleString("en-IN")}
                     </span>
                   </div>
 
-                  <div className="flex justify-between mt-2">
+                  <div className="flex items-start justify-between gap-3 mt-2">
                     <span className="font-semibold text-[var(--text-primary)]">
                       Total
                     </span>
 
                     <span className="text-lg font-bold text-[var(--text-primary)]">
-                      â‚¹
+                      ₹
                       {Number(
                         bill.total || 0
                       ).toLocaleString("en-IN")}

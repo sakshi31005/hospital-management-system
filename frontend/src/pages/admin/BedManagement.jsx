@@ -473,7 +473,7 @@ export default function BedManagement() {
       >
         <div className="space-y-4">
           <p className="text-sm text-[var(--text-secondary)]">
-            Ward: {selectedBed?.ward} Â· Rate: â‚¹
+            Ward: {selectedBed?.ward} · Rate: ₹
             {selectedBed?.dailyRate}/day
           </p>
 

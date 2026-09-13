@@ -43,6 +43,7 @@ export default function PatientDashboard() {
   const [departments, setDepartments] = useState([]);
   const [prescriptions, setPrescriptions] = useState([]);
   const [labReports, setLabReports] = useState([]);
+  const [medicalRecords, setMedicalRecords] = useState([]);
   const [bills, setBills] = useState([]);
   const [beds, setBeds] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -62,6 +63,7 @@ export default function PatientDashboard() {
         departmentsRes,
         prescriptionsRes,
         labReportsRes,
+        medicalRecordsRes,
         billsRes,
         bedsRes
       ] = await Promise.all([
@@ -71,6 +73,7 @@ export default function PatientDashboard() {
         fetch(apiUrl('/api/departments')),
         fetch(apiUrl('/api/prescriptions')),
         fetch(apiUrl('/api/lab-reports')),
+        fetch(apiUrl('/api/medical-records')),
         fetch(apiUrl('/api/bills')),
         fetch(apiUrl('/api/beds'))
       ]);
@@ -94,6 +97,7 @@ export default function PatientDashboard() {
       const departmentsData = await departmentsRes.json();
       const prescriptionsData = await prescriptionsRes.json();
       const labReportsData = await labReportsRes.json();
+      const medicalRecordsData = await medicalRecordsRes.json();
       const billsData = await billsRes.json();
       const bedsData = await bedsRes.json();
 
@@ -103,6 +107,7 @@ export default function PatientDashboard() {
       setDepartments(departmentsData);
       setPrescriptions(prescriptionsData);
       setLabReports(labReportsData);
+      setMedicalRecords(medicalRecordsData);
       setBills(billsData);
       setBeds(bedsData);
     } catch (error) {
@@ -149,6 +154,12 @@ export default function PatientDashboard() {
   const myPrescriptions = prescriptions.filter(
     (prescription) =>
       prescription.patientId === patientId
+  );
+
+  const myMedicalRecords = medicalRecords.filter(
+    (record) =>
+      record.patientId === patientId ||
+      record.patientId === patient?._id
   );
 
   const myLabReports = labReports.filter(
@@ -356,8 +367,7 @@ export default function PatientDashboard() {
         status: 'confirmed'
       };
 
-      const response = await fetch(
-        '/api/appointments',
+      const response = await fetch(apiUrl('/api/appointments'),
         {
           method: 'POST',
           headers: {
@@ -463,7 +473,7 @@ export default function PatientDashboard() {
           <div>
             <h1 className="text-2xl font-bold text-[var(--text-primary)]">
               Hello,{' '}
-              {patient.name.split(' ')[0]}! ðŸ‘‹
+              {patient.name.split(' ')[0]}! 👋
             </h1>
 
             <p className="text-[var(--text-secondary)] mt-1">
@@ -570,8 +580,7 @@ export default function PatientDashboard() {
           My Health Analytics
         </h3>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {/* Total Appointments */}
           <div className="p-4 rounded-xl bg-[var(--bg-tertiary)]">
             <p className="text-xs text-[var(--text-secondary)]">
@@ -678,11 +687,11 @@ export default function PatientDashboard() {
             {upcomingAppts.map(
               (apt) => (
                 <div
+                  className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-xl border border-[var(--border-color)] hover:bg-[var(--bg-tertiary)] transition-colors"
                   key={
                     apt._id ||
                     apt.id
                   }
-                  className="flex items-center gap-4 p-4 rounded-xl border border-[var(--border-color)] hover:bg-[var(--bg-tertiary)] transition-colors"
                 >
                   <div className="w-14 h-14 rounded-xl bg-primary-500/10 flex flex-col items-center justify-center">
                     <span className="text-lg font-bold text-primary-500">
@@ -709,12 +718,12 @@ export default function PatientDashboard() {
                     </h4>
 
                     <p className="text-sm text-[var(--text-secondary)]">
-                      {apt.department} Â·{' '}
+                      {apt.department} ·{' '}
                       {apt.reason}
                     </p>
                   </div>
 
-                  <div className="text-right">
+                  <div className="text-left sm:text-right">
                     <p className="text-sm font-medium text-[var(--text-primary)]">
                       {apt.time}
                     </p>
@@ -774,14 +783,14 @@ export default function PatientDashboard() {
                       }
                       className="p-3 rounded-lg bg-[var(--bg-tertiary)]"
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium text-[var(--text-primary)] text-sm">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+                        <h4 className="font-medium text-[var(--text-primary)] text-sm min-w-0 break-words">
                           {
                             presc.diagnosis
                           }
                         </h4>
 
-                        <span className="text-xs text-[var(--text-secondary)]">
+                        <span className="text-xs text-[var(--text-secondary)] shrink-0">
                           {new Date(
                             presc.date
                           ).toLocaleDateString(
@@ -798,7 +807,7 @@ export default function PatientDashboard() {
                         {
                           presc.doctorName
                         }{' '}
-                        Â·{' '}
+                        ·{' '}
                         {
                           medicines.length
                         }{' '}
@@ -827,7 +836,7 @@ export default function PatientDashboard() {
                             )
                           }
                         >
-                          ðŸ“„ PDF
+                          📄 PDF
                         </Button>
                       </div>
                     </div>
@@ -849,9 +858,51 @@ export default function PatientDashboard() {
             Lab Reports
           </h3>
 
-          <p className="text-sm text-[var(--text-secondary)]">
-            No lab reports available.
-          </p>
+          {myLabReports.length === 0 ? (
+            <p className="text-sm text-[var(--text-secondary)]">
+              No lab reports available.
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {myLabReports.map((report) => (
+                <div
+                  key={report._id || report.id}
+                  className="p-3 rounded-lg bg-[var(--bg-tertiary)]"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h4 className="font-medium text-sm text-[var(--text-primary)] break-words">
+                        {report.testName ||
+                          report.testType ||
+                          'Lab Test'}
+                      </h4>
+
+                      <p className="text-xs text-[var(--text-secondary)] mt-1">
+                        {report.doctorName || 'Doctor not available'}
+                      </p>
+
+                      {report.result && (
+                        <p className="text-sm text-[var(--text-primary)] mt-2">
+                          Result: {report.result}
+                        </p>
+                      )}
+                    </div>
+
+                    <span className="text-xs text-[var(--text-secondary)] shrink-0">
+                      {report.date
+                        ? new Date(
+                          report.date
+                        ).toLocaleDateString('en-IN', {
+                          day: '2-digit',
+                          month: 'short'
+                        })
+                        : ''}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </Card>
       </div>
 
@@ -866,9 +917,73 @@ export default function PatientDashboard() {
           Medical History
         </h3>
 
-        <p className="text-sm text-[var(--text-secondary)]">
-          No medical records available.
-        </p>
+        {myMedicalRecords.length === 0 ? (
+          <p className="text-sm text-[var(--text-secondary)]">
+            No medical records available.
+          </p>
+        ) : (
+          <div className="space-y-3">
+            {myMedicalRecords.map((record) => (
+              <div
+                key={record._id || record.id}
+                className="p-4 rounded-lg bg-[var(--bg-tertiary)]"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h4 className="font-medium text-[var(--text-primary)]">
+                      {record.diagnosis}
+                    </h4>
+
+                    <p className="text-xs text-[var(--text-secondary)] mt-1">
+                      Dr. {record.doctorName}
+                    </p>
+
+                    {record.notes && (
+                      <p className="text-sm text-[var(--text-secondary)] mt-2 break-words">
+                        {record.notes}
+                      </p>
+                    )}
+                  </div>
+
+                  <span className="text-xs text-[var(--text-secondary)] shrink-0">
+                    {record.recordDate
+                      ? new Date(record.recordDate).toLocaleDateString("en-IN", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                      : ""}
+                  </span>
+                </div>
+
+                {record.vitals && (
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3">
+                    <div className="text-xs">
+                      <span className="text-[var(--text-tertiary)]">BP</span>
+                      <p className="font-medium text-[var(--text-primary)]">
+                        {record.vitals.bp || "N/A"}
+                      </p>
+                    </div>
+
+                    <div className="text-xs">
+                      <span className="text-[var(--text-tertiary)]">Temp</span>
+                      <p className="font-medium text-[var(--text-primary)]">
+                        {record.vitals.temp || "N/A"}
+                      </p>
+                    </div>
+
+                    <div className="text-xs">
+                      <span className="text-[var(--text-tertiary)]">Pulse</span>
+                      <p className="font-medium text-[var(--text-primary)]">
+                        {record.vitals.pulse || "N/A"}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </Card>
 
       {/* Bills */}
@@ -882,9 +997,61 @@ export default function PatientDashboard() {
           My Bills
         </h3>
 
-        <p className="text-sm text-[var(--text-secondary)]">
-          No bills available.
-        </p>
+        {myBills.length === 0 ? (
+          <p className="text-sm text-[var(--text-secondary)]">
+            No bills available.
+          </p>
+        ) : (
+          <div className="space-y-3">
+            {myBills.map((bill) => (
+              <div
+                key={bill._id || bill.id}
+                className="p-4 rounded-lg bg-[var(--bg-tertiary)]"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h4 className="font-medium text-sm text-[var(--text-primary)] break-words">
+                      {bill.description ||
+                        bill.service ||
+                        bill.billType ||
+                        'Hospital Bill'}
+                    </h4>
+
+                    <p className="text-xs text-[var(--text-secondary)] mt-1">
+                      {bill.date
+                        ? new Date(bill.date).toLocaleDateString(
+                          'en-IN',
+                          {
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric'
+                          }
+                        )
+                        : ''}
+                    </p>
+                  </div>
+
+                  <span className="text-sm font-semibold text-[var(--text-primary)] shrink-0">
+                    ₹{bill.amount || 0}
+                  </span>
+                </div>
+
+                <div className="mt-3">
+                  <Badge
+                    variant={
+                      bill.status === 'paid'
+                        ? 'success'
+                        : 'warning'
+                    }
+                    size="xs"
+                  >
+                    {bill.status || 'pending'}
+                  </Badge>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </Card>
 
       {/* Book Appointment Modal */}
@@ -978,11 +1145,7 @@ export default function PatientDashboard() {
                   (doctor) => ({
                     value:
                       doctor._id,
-                    label: `${doctor.name
-                      } â€” ${doctor.specialization
-                      } (â­${doctor.rating ||
-                      0
-                      })`
+                    label: `${doctor.name} — ${doctor.specialization} (⭐${doctor.rating || 0})`
                   })
                 )
             ]}
@@ -1017,7 +1180,7 @@ export default function PatientDashboard() {
                     for this doctor yet.
                   </p>
                 ) : (
-                  <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
                     {availableSlots.map(
                       (slot) => {
                         const booked =
@@ -1050,11 +1213,11 @@ export default function PatientDashboard() {
                               }`}
                           >
                             {booked
-                              ? 'âŒ'
+                              ? '❌'
                               : selectedTime ===
                                 slot
-                                ? 'ðŸ”µ'
-                                : 'âœ…'}{' '}
+                                ? '🔵'
+                                : '✅'}{' '}
                             {slot}
                           </button>
                         );
@@ -1092,8 +1255,7 @@ export default function PatientDashboard() {
         {viewPresc && (
           <div className="space-y-4">
 
-            <div className="grid grid-cols-2 gap-3 p-3 rounded-lg bg-[var(--bg-tertiary)]">
-
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-lg bg-[var(--bg-tertiary)]">
               <div>
                 <p className="text-xs text-[var(--text-tertiary)]">
                   Doctor
@@ -1246,7 +1408,7 @@ export default function PatientDashboard() {
                 )
               }
             >
-              ðŸ“„ Download PDF
+              📄 Download PDF
             </Button>
 
           </div>

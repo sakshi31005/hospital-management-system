@@ -513,7 +513,7 @@ export default function DoctorManagement() {
 
                 <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
                   <Star size={14} />
-                  {doc.rating || 0} rating Â· {doc.experience} yrs exp
+                  {doc.rating || 0} rating · {doc.experience} yrs exp
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">

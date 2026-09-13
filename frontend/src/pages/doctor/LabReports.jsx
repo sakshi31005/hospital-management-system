@@ -240,60 +240,59 @@ const LabReports = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                     {filteredReports.map((report) => (
                         <Card key={report._id} className="p-5">
-                            <div className="flex items-start justify-between gap-4">
-                                <div>
-                                    <h3 className="font-semibold text-gray-900 dark:text-white">
+                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                                <div className="min-w-0">
+                                    <h3 className="font-semibold text-gray-900 dark:text-white break-words">
                                         {report.testName}
                                     </h3>
 
-                                    <p className="text-sm text-gray-500 mt-1">
+                                    <p className="text-sm text-gray-500 mt-1 break-words">
                                         Patient: {report.patientName}
                                     </p>
 
                                     {report.doctorName && (
-                                        <p className="text-sm text-gray-500 mt-1">
+                                        <p className="text-sm text-gray-500 mt-1 break-words">
                                             Doctor: {report.doctorName}
                                         </p>
                                     )}
                                 </div>
 
                                 <span
-                                    className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                        report.status === "normal"
-                                            ? "bg-green-100 text-green-700"
-                                            : report.status === "abnormal"
-                                              ? "bg-red-100 text-red-700"
-                                              : "bg-yellow-100 text-yellow-700"
-                                    }`}
+                                    className={`self-start shrink-0 px-3 py-1 rounded-full text-xs font-medium ${report.status === "normal"
+                                        ? "bg-green-100 text-green-700"
+                                        : report.status === "abnormal"
+                                            ? "bg-red-100 text-red-700"
+                                            : "bg-yellow-100 text-yellow-700"
+                                        }`}
                                 >
                                     {report.status}
                                 </span>
                             </div>
 
                             <div className="mt-4 space-y-2 text-sm">
-                                <p>
+                                <p className="break-words">
                                     <span className="font-medium">
                                         Test Type:
                                     </span>{" "}
-                                    {report.testType || "â€”"}
+                                    {report.testType || "—"}
                                 </p>
 
-                                <p>
+                                <p className="break-words">
                                     <span className="font-medium">
                                         Result:
                                     </span>{" "}
                                     {report.result}
                                 </p>
 
-                                <p>
+                                <p className="break-words">
                                     <span className="font-medium">
                                         Normal Range:
                                     </span>{" "}
-                                    {report.normalRange || "â€”"}
+                                    {report.normalRange || "—"}
                                 </p>
 
                                 {report.notes && (
-                                    <p>
+                                    <p className="break-words">
                                         <span className="font-medium">
                                             Notes:
                                         </span>{" "}
@@ -326,7 +325,7 @@ const LabReports = () => {
                                 onClick={() => setShowForm(false)}
                                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white text-xl"
                             >
-                                Ã—
+                                &times;
                             </button>
                         </div>
 
@@ -399,7 +398,7 @@ const LabReports = () => {
                             <Input
                                 label="Normal Range"
                                 name="normalRange"
-                                placeholder="e.g. 4.5 - 5.5 million/ÂµL"
+                                placeholder="e.g. 4.5 - 5.5 million/µL"
                                 value={formData.normalRange}
                                 onChange={handleChange}
                             />

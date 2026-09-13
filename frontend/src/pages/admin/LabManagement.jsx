@@ -273,7 +273,7 @@ export default function LabManagement() {
 
               <p className="text-sm text-[var(--text-secondary)]">
                 {report.patientName}
-                {" Â· "}
+                {" · "}
                 {report.reportDate
                   ? new Date(
                       report.reportDate

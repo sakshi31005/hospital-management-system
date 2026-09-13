@@ -134,9 +134,8 @@ export function Input({ label, error, icon: Icon, className = '', ...props }) {
           </div>
         )}
         <input
-          className={`w-full px-4 py-2.5 rounded-lg border bg-[var(--input-bg)] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 ${
-            Icon ? 'pl-10' : ''
-          } ${error ? 'border-danger-500 focus:ring-danger-500/30 focus:border-danger-500' : 'border-[var(--input-border)]'}`}
+          className={`w-full px-4 py-2.5 rounded-lg border bg-[var(--input-bg)] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 ${Icon ? 'pl-10' : ''
+            } ${error ? 'border-danger-500 focus:ring-danger-500/30 focus:border-danger-500' : 'border-[var(--input-border)]'}`}
           {...props}
         />
       </div>
@@ -169,9 +168,8 @@ export function Textarea({ label, error, className = '', ...props }) {
     <div className={`space-y-1.5 ${className}`}>
       {label && <label className="block text-sm font-medium text-[var(--text-primary)]">{label}</label>}
       <textarea
-        className={`w-full px-4 py-2.5 rounded-lg border bg-[var(--input-bg)] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 resize-none ${
-          error ? 'border-danger-500' : 'border-[var(--input-border)]'
-        }`}
+        className={`w-full px-4 py-2.5 rounded-lg border bg-[var(--input-bg)] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 resize-none ${error ? 'border-danger-500' : 'border-[var(--input-border)]'
+          }`}
         rows={4}
         {...props}
       />
@@ -338,12 +336,12 @@ export function DataTable({ columns, data, onRowClick, emptyMessage = 'No data f
 
   const sortedData = sortField
     ? [...data].sort((a, b) => {
-        const aVal = a[sortField];
-        const bVal = b[sortField];
-        if (aVal < bVal) return sortDir === 'asc' ? -1 : 1;
-        if (aVal > bVal) return sortDir === 'asc' ? 1 : -1;
-        return 0;
-      })
+      const aVal = a[sortField];
+      const bVal = b[sortField];
+      if (aVal < bVal) return sortDir === 'asc' ? -1 : 1;
+      if (aVal > bVal) return sortDir === 'asc' ? 1 : -1;
+      return 0;
+    })
     : data;
 
   if (!data || data.length === 0) {
@@ -398,16 +396,15 @@ export function DataTable({ columns, data, onRowClick, emptyMessage = 'No data f
 // ===== Tabs =====
 export function Tabs({ tabs, activeTab, onChange, className = '' }) {
   return (
-    <div className={`flex gap-1 p-1 bg-[var(--bg-tertiary)] rounded-xl ${className}`}>
+    <div className={`flex gap-1 p-1 bg-[var(--bg-tertiary)] rounded-xl overflow-x-auto ${className}`}>
       {tabs.map((tab) => (
         <button
           key={tab.id}
           onClick={() => onChange(tab.id)}
-          className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
-            activeTab === tab.id
-              ? 'bg-[var(--bg-secondary)] text-[var(--text-primary)] shadow-sm'
-              : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-          }`}
+          className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${activeTab === tab.id
+            ? 'bg-[var(--bg-secondary)] text-[var(--text-primary)] shadow-sm'
+            : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+            }`}
         >
           {tab.label}
           {tab.count !== undefined && (
@@ -450,11 +447,10 @@ export function Pagination({ currentPage, totalPages, onPageChange, className = 
           <button
             key={i}
             onClick={() => onPageChange(p)}
-            className={`w-9 h-9 text-sm rounded-lg transition-colors cursor-pointer ${
-              p === currentPage
+            className={`w-9 h-9 text-sm rounded-lg transition-colors cursor-pointer ${p === currentPage
                 ? 'bg-primary-600 text-white'
                 : 'text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)]'
-            }`}
+              }`}
           >
             {p}
           </button>

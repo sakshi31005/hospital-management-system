@@ -510,7 +510,7 @@ export default function DoctorDashboard() {
           </h1>
 
           <p className="text-[var(--text-secondary)] mt-1">
-            {doctor.specialization} Â· {doctor.department}
+            {doctor.specialization} · {doctor.department}
           </p>
         </div>
 
@@ -525,7 +525,7 @@ export default function DoctorDashboard() {
           </span>
 
           <span className="text-[var(--text-tertiary)]">
-            Â·
+            ·
           </span>
 
           <span className="text-sm text-[var(--text-secondary)]">
@@ -626,9 +626,9 @@ export default function DoctorDashboard() {
 
                     <p className="text-sm text-[var(--text-secondary)]">
                       {patient
-                        ? `Age: ${patient.age} Â· ${patient.gender} Â· Blood: ${patient.bloodGroup}`
+                        ? `Age: ${patient.age} · ${patient.gender} · Blood: ${patient.bloodGroup}`
                         : 'Patient details unavailable'}
-                      {' Â· '}
+                      {' · '}
                       {apt.reason}
                     </p>
 
@@ -832,7 +832,7 @@ export default function DoctorDashboard() {
                     </p>
 
                     <p className="text-sm text-[var(--text-secondary)]">
-                      {presc.diagnosis} Â·{' '}
+                      {presc.diagnosis} ·{' '}
                       {new Date(
                         presc.date
                       ).toLocaleDateString(
@@ -854,7 +854,7 @@ export default function DoctorDashboard() {
                       )
                     }
                   >
-                    ðŸ“„ PDF
+                    📄 PDF
                   </Button>
                 </div>
               ))}
