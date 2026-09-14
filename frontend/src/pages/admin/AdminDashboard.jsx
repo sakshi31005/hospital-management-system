@@ -234,7 +234,7 @@ export default function AdminDashboard() {
             >
               {typeof item.value === 'number' &&
                 item.value > 999
-                ? `â‚¹${(item.value / 1000).toFixed(0)}K`
+                ? `₹${(item.value / 1000).toFixed(0)}K`
                 : item.value}
             </span>
           </p>
@@ -348,16 +348,15 @@ export default function AdminDashboard() {
         {/* MAIN CHART */}
 
         <Card
-          className="min-w-0 lg:col-span-2 animate-fade-in-up"
+          className="w-full min-w-0 overflow-hidden lg:col-span-2 animate-fade-in-up"
           style={{ animationDelay: '300ms' }}
         >
-          <div className="flex items-center justify-between mb-6">
-
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
             <h3 className="text-lg font-semibold text-[var(--text-primary)]">
               Hospital Overview
             </h3>
 
-            <Tabs
+            <Tabs className="w-full sm:w-auto max-w-full"
               tabs={[
                 {
                   id: 'patients',
@@ -378,8 +377,7 @@ export default function AdminDashboard() {
 
           </div>
 
-          <div className="h-72">
-
+          <div className="h-64 sm:h-72 w-full min-w-0">
             <ResponsiveContainer
               width="100%"
               height="100%"
@@ -523,7 +521,7 @@ export default function AdminDashboard() {
         ========================= */}
 
         <Card
-          className="min-w-0 animate-fade-in-up"
+          className="w-full min-w-0 overflow-hidden animate-fade-in-up"
           style={{ animationDelay: '400ms' }}
         >
 
@@ -531,8 +529,7 @@ export default function AdminDashboard() {
             Department Visits
           </h3>
 
-          <div className="h-56">
-
+          <div className="h-52 sm:h-56 w-full min-w-0">
             <ResponsiveContainer
               width="100%"
               height="100%"
@@ -576,8 +573,7 @@ export default function AdminDashboard() {
 
           </div>
 
-          <div className="grid grid-cols-2 gap-2 mt-2">
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
             {departmentVisits
               .slice(0, 4)
               .map((department, index) => (
@@ -597,7 +593,7 @@ export default function AdminDashboard() {
                     }}
                   />
 
-                  <span className="text-[var(--text-secondary)] truncate">
+                  <span className=" min-w-0 overflow-hidden text-[var(--text-secondary)] truncate">
                     {department.name}
                   </span>
 
@@ -626,8 +622,7 @@ export default function AdminDashboard() {
         style={{ animationDelay: '500ms' }}
       >
 
-        <div className="flex items-center justify-between mb-4">
-
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
           <h3 className="text-lg font-semibold text-[var(--text-primary)]">
             Today's Appointments
           </h3>
@@ -665,8 +660,7 @@ export default function AdminDashboard() {
           style={{ animationDelay: '600ms' }}
         >
 
-          <div className="flex items-center justify-between mb-4">
-
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
             <h3 className="text-lg font-semibold text-[var(--text-primary)]">
               Doctors
             </h3>
@@ -751,8 +745,7 @@ export default function AdminDashboard() {
           style={{ animationDelay: '700ms' }}
         >
 
-          <div className="flex items-center justify-between mb-4">
-
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
             <h3 className="text-lg font-semibold text-[var(--text-primary)]">
               Bed Overview
             </h3>

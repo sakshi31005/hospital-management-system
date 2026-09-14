@@ -161,7 +161,7 @@ export default function AppointmentManagement() {
               size="sm"
               onClick={() => handleStatusUpdate(row._id, "completed")}
             >
-              âœ“
+              ✓
             </Button>
 
             <Button
@@ -170,7 +170,7 @@ export default function AppointmentManagement() {
               className="text-danger-500"
               onClick={() => handleStatusUpdate(row._id, "cancelled")}
             >
-              âœ•
+            ×
             </Button>
           </div>
         ) : null,
