@@ -11,6 +11,7 @@ import {
   User,
   FileText,
 } from "lucide-react";
+import { apiUrl } from "../../Api/Api";
 
 export default function PatientLabReports() {
   const { user } = useAuth();
