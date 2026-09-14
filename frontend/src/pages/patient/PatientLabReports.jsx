@@ -32,9 +32,7 @@ export default function PatientLabReports() {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          `/api/lab-reports/patient/${patientId}`
-        );
+        const response = await fetch(apiUrl(`/api/lab-reports/patient/${patientId}`));
 
         if (!response.ok) {
           throw new Error("Failed to fetch lab reports");

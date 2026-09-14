@@ -117,8 +117,8 @@ export default function PatientBed() {
               className="animate-fade-in-up"
             >
               {/* Top */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                <div className="flex items-center gap-3 min-w-0">
                   <div className="p-3 rounded-xl bg-[var(--bg-tertiary)]">
                     <Bed
                       size={24}
@@ -126,8 +126,8 @@ export default function PatientBed() {
                     />
                   </div>
 
-                  <div>
-                    <h2 className="text-xl font-bold text-[var(--text-primary)]">
+                  <div className="min-w-0">
+                    <h2 className="text-xl font-bold text-[var(--text-primary)] break-words">
                       Bed {bed.number}
                     </h2>
 
@@ -137,13 +137,13 @@ export default function PatientBed() {
                   </div>
                 </div>
 
-                <Badge
+                <Badge className="shrink-0"
                   variant={
                     bed.status === "occupied"
                       ? "danger"
                       : bed.status === "available"
-                      ? "success"
-                      : "warning"
+                        ? "success"
+                        : "warning"
                   }
                   dot
                 >
@@ -182,7 +182,7 @@ export default function PatientBed() {
                     </p>
 
                     <p className="font-medium text-[var(--text-primary)]">
-                      â‚¹{bed.dailyRate}
+                      ₹{bed.dailyRate}
                       <span className="text-xs font-normal text-[var(--text-secondary)]">
                         {" "}
                         / day
@@ -212,16 +212,16 @@ export default function PatientBed() {
               {/* Status Message */}
               <div className="mt-6 p-4 rounded-xl bg-[var(--bg-tertiary)]">
                 {bed.status === "occupied" ? (
-                  <p className="text-sm text-[var(--text-secondary)]">
-                    ðŸ›ï¸ This bed is currently assigned to you.
+                  <p className="text-sm text-[var(--text-secondary)] break-words">
+                    🛏️ This bed is currently assigned to you.
                   </p>
                 ) : bed.status === "maintenance" ? (
-                  <p className="text-sm text-[var(--text-secondary)]">
-                    âš ï¸ This bed is currently under maintenance.
+                  <p className="text-sm text-[var(--text-secondary)] break-words">
+                    ⚠️ This bed is currently under maintenance.
                   </p>
                 ) : (
-                  <p className="text-sm text-[var(--text-secondary)]">
-                    â„¹ï¸ This bed is currently available.
+                  <p className="text-sm text-[var(--text-secondary)] break-words">
+                    ℹ️ This bed is currently available.
                   </p>
                 )}
               </div>

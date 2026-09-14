@@ -212,7 +212,7 @@ export default function PrescriptionManagement() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-[var(--text-primary)]">
-          My Prescriptions ðŸ’Š
+          My Prescriptions 
         </h1>
 
         <p className="text-[var(--text-secondary)] mt-1">

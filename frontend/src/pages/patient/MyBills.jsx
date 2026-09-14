@@ -260,7 +260,7 @@ export default function PatientBills() {
 
                 {/* Payment Method */}
                 {bill.paymentMethod && (
-                  <p className="mt-3 text-sm text-[var(--text-secondary)]">
+                  <p className="mt-3 text-sm text-[var(--text-secondary)] break-words">
                     Payment Method:{" "}
                     <span className="font-medium text-[var(--text-primary)]">
                       {bill.paymentMethod}
