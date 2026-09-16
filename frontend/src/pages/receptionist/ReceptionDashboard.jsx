@@ -790,7 +790,7 @@ export default function ReceptionDashboard() {
             label: 'Generate Bill',
             icon: () => (
               <span className="text-lg">
-                ðŸ’°
+                💰
               </span>
             ),
             color: 'bg-purple-500/10 text-purple-500',

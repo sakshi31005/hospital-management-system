@@ -149,7 +149,7 @@ export default function PatientBookAppointment() {
       }
 
       setSuccess(
-        "Appointment booked successfully! ðŸŽ‰"
+        "Appointment booked successfully! 📅"
       );
 
       setFormData({

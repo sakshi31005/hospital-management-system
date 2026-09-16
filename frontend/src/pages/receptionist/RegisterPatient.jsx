@@ -48,7 +48,7 @@ function RegisterPatient() {
         throw new Error(data.message || "Failed to register patient");
       }
 
-      setMessage("Patient registered successfully! ðŸŽ‰");
+      setMessage("Patient registered successfully! 🎉");
 
       setForm({
         name: "",

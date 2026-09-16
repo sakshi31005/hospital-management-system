@@ -1,4 +1,4 @@
-﻿import { apiUrl } from "../../Api/Api";
+import { apiUrl } from "../../Api/Api";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import {
@@ -315,7 +315,7 @@ export default function DoctorDashboard() {
       setShowPrescription(false);
 
       setToast({
-        message: 'Prescription created successfully ðŸ’Š',
+        message: 'Prescription created successfully 📝',
         type: 'success'
       });
     } catch (error) {

@@ -90,7 +90,7 @@ export default function BookAppointment() {
       }
 
       setToast({
-        message: "Appointment booked successfully ðŸŽ‰",
+        message: "Appointment booked successfully 📅",
         type: "success",
       });
 

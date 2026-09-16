@@ -110,21 +110,21 @@ export default function BedManagement() {
         "bg-accent-500/10 border-accent-500/30 hover:border-accent-500",
       text: "text-accent-600",
       badge: "success",
-      icon: "ðŸ›ï¸",
+      icon: "🛏️",
     },
 
     occupied: {
       color: "bg-danger-500/10 border-danger-500/30",
       text: "text-danger-600",
       badge: "danger",
-      icon: "ðŸ§‘",
+      icon: "🛏️",
     },
 
     maintenance: {
       color: "bg-warning-500/10 border-warning-500/30",
       text: "text-warning-600",
       badge: "warning",
-      icon: "ðŸ”§",
+      icon: "🛏️",
     },
   };
 

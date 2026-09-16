@@ -186,7 +186,7 @@ function PrescriptionManagement() {
 
             console.log("Prescription created:", data);
 
-            alert("Prescription created successfully! ðŸ’Š");
+            alert("Prescription created successfully! 📝");
 
             // Reset form
             setFormData({
@@ -213,7 +213,7 @@ function PrescriptionManagement() {
             {/* Page Header */}
             <div>
                 <h1 className="text-3xl font-bold text-[var(--text-primary)]">
-                    Prescription Management ðŸ’Š
+                    Prescription Management 📝
                 </h1>
 
                 <p className="mt-2 text-[var(--text-secondary)]">
@@ -362,7 +362,7 @@ function PrescriptionManagement() {
                 <div className="border-t pt-5">
 
                     <h2 className="text-xl font-semibold mb-4">
-                        Medication ðŸ’Š
+                        Medication 📝
                     </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -459,7 +459,7 @@ function PrescriptionManagement() {
                     type="submit"
                     className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                 >
-                    Create Prescription ðŸ’Š
+                    Create Prescription 📝
                 </button>
 
             </form>

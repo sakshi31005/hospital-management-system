@@ -375,7 +375,7 @@ export default function PrescriptionManagement() {
                   <div className="mb-4">
 
                     <h4 className="font-medium text-[var(--text-primary)] mb-3">
-                      Medicines ðŸ’Š
+                      Medicines 💊
                     </h4>
 
                     {prescription.medications?.length ? (

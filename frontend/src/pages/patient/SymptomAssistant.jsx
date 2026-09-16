@@ -393,7 +393,7 @@ export default function SymptomAssistant() {
                       {/* Suggestions */}
                       <div className="px-4 py-3 rounded-2xl bg-accent-50 dark:bg-accent-500/10">
                         <p className="text-xs font-semibold text-accent-700 dark:text-accent-400 mb-2">
-                          ðŸ’¡ General Suggestions
+                          💡 General Suggestions
                         </p>
 
                         <ul className="space-y-1">
@@ -404,7 +404,7 @@ export default function SymptomAssistant() {
                                 className="text-sm text-[var(--text-secondary)] flex items-start gap-2"
                               >
                                 <span className="text-accent-500 mt-0.5">
-                                  â€¢
+                                  •
                                 </span>
 
                                 {suggestion}
@@ -417,7 +417,7 @@ export default function SymptomAssistant() {
                       {/* Department Recommendation */}
                       <div className="px-4 py-3 rounded-2xl bg-primary-50 dark:bg-primary-900/20">
                         <p className="text-xs font-semibold text-primary-700 dark:text-primary-400 mb-2">
-                          ðŸ¥ Recommended Department:{' '}
+                          🏥 Recommended Department:{' '}
                           {d.department}
                         </p>
 
